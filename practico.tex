@@ -1,0 +1,67 @@
+\documentclass[a4paper]{article}
+
+\usepackage{a4wide}
+
+\usepackage[colorlinks=true,linkcolor=black,urlcolor=blue,bookmarksopen=true]{hyperref}
+\usepackage{bookmark}
+\usepackage{fancyhdr}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{listings}
+
+
+\pagestyle{fancy} % Encabezado y pie de página
+
+\fancyhf{}
+\fancyhead[C]{
+	Universidad Nacional de Salta - Facultad de Cs Exactas \\
+	Programación para LAS \& TUP\\
+	\textit{Trabajo Práctico Nivel 8 Recursión con Vectores} \\
+}
+\fancyhead[R]{	Año: 2023}
+\renewcommand{\headrulewidth}{0.4pt}
+\fancyfoot[C]{\thepage}
+\renewcommand{\footrulewidth}{0.4pt}
+
+
+
+
+
+\begin{document}
+
+\hfill
+
+\section*{Clase Práctica}
+\subsection*{Ejercicio 1: Para las siguientes situaciones, realice un módulo recursivo y la traza con los 	datos indicados para cada una: }
+\renewcommand{\theenumi}{\alph{enumi}}
+\begin{enumerate}{}
+	\item 	 Desarrollar un módulo recursivo que permita sumar los dígitos de un número natural X.	Realizar la traza para X = 12345.
+	\item 	 Desarrollar un módulo recursivo que permita determinar si un dígito D pertenece a un número entero positivo N.Realizar la traza para D = 1 y X = 45673.
+	\item  Desarrollar un modulo recursivorecursiva en C que calcula el término de la serie de Fibonacci para un índice dado.Realiza la traza para N=8 
+	
+	
+\end{enumerate}
+\subsection*{Ejercicio 2:  Desarrolla la traza del siguiente codigo en C que imprime los números primos menores que un número natural N.	Realizar la traza para N = 100, luego con N = 27.
+}
+\lstinputlisting{codigopractico2.c}
+\subsection*{Ejercicio 3:  Se pide crear un programa recursivo que permita generar aleatoriamente una lista de N números enteros en el intervalo [A,B], posteriormente, ingresar un número determinar si es divisor de algunos de los numeros recientemente generados. Mostrar los numeros en los cuales es divisor.}
+
+\subsection*{Ejercicio 4:  Definir función recursiva llamada numerologia, que devolverá un numero a partir de una fecha de nacimiento. El número se calcula sumando cada uno de los dígitos de la fecha completa: día, mes y año. Por ejemplo, si alguien nació el 26 de marzo de 1966, sumará: 2+6+0+3+1+9+6+6=33, se continúa reduciendo 3+3=6, el programa deberá devolver el numero 6 en este caso.	Pautas:	La fecha se ingresara  con el siguiente formato : 25/05/1979.	Deberá haber una funcion recursiva que sume.}
+
+\newpage
+\section*{Ejercicios Resueltos}
+\subsection*{Ejercicio 1: Para las siguientes situaciones, realice un módulo recursivo y la traza con los 	datos indicados para cada una: }
+\subsubsection*{a.- Desarrollar un módulo recursivo que permita sumar los dígitos de un número natural X.	Realizar la traza para X = 12345.}
+\lstinputlisting{codigopractico1a.c}
+\subsubsection*{b.- Desarrollar un módulo recursivo que permita determinar si un dígito D pertenece a un número entero positivo N.Realizar la traza para D = 1 y X = 45673.}
+\lstinputlisting{buscarDigito.c}
+\subsubsection*{c.-Desarrollar un modulo recursivorecursiva en C que calcula el término de la serie de Fibonacci para un índice dado. Realiza la traza para N=8.}
+\lstinputlisting{codigopractico1c.c}
+\subsection*{Ejercicio 3: Para las siguientes situaciones, realice un módulo recursivo y la traza con los 	datos indicados para cada una:}
+\lstinputlisting{codigopractico2.c}
+\subsection*{Ejercicio 4:  Definir función recursiva llamada numerologia, que devolverá un numero a partir de una fecha de nacimiento. El número se calcula sumando cada uno de los dígitos de la fecha completa: día, mes y año. Por ejemplo, si alguien nació el 26 de marzo de 1966, sumará: 2+6+0+3+1+9+6+6=33, se continúa reduciendo 3+3=6, el programa deberá devolver el numero 6 en este caso.	Pautas:	La fecha se ingresara  con el siguiente formato : 25/05/1979.	Deberá haber una funcion recursiva que sume.}
+\lstinputlisting{numerologia.c}
+\end{document}
