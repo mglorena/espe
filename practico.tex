@@ -271,7 +271,9 @@ RSTP omite los dos estados de STP. Omite el estado de bloqueo y el estado de esc
 	\caption{}
 	\label{fig:screenshot006}
 \end{figure}
-\item \textbf{ En el dispositivo que tiene uno de los puertos bloqueados deshabilitar la interface que NO está bloqueda. ¿Cómo reaccionala red ante este evento?}
+\item \textbf{ En el dispositivo que tiene uno de los puertos bloqueados deshabilitar la interface que NO está bloqueda. ¿Cómo reacciona
+la red ante este evento?
+}
 \\
   El bridge del Router 2003, ahora no tiene un puerto con el role de alternate-port, ether2 pasa a ser root-port,  ether1 y ether3 como designated-port.
   \item \textbf{Seleccionar un dispositivo diferente al que funciona como root
@@ -319,7 +321,56 @@ Actualización de las BPDU: Cuando se agrega un nuevo switch a la red, enviará 
 En resumen, cuando se agrega un nuevo switch con una mejor prioridad al Root Bridge actual, es probable que se convierta en el nuevo Root Bridge, lo que puede desencadenar un proceso de convergencia en la red. La convergencia puede causar una breve interrupción en el tráfico de red mientras los dispositivos ajustan sus estados de puerto y se adaptan a la nueva topología. La adición de un nuevo Root Bridge también puede afectar el rendimiento y la eficiencia del árbol de expansión en la red, por lo que es importante planificar cuidadosamente los cambios en la topología de la red.
 \end{enumerate}
 \section*{VLAN, DHCP y Ruteo Estático}
+\begin{enumerate}
+	\item \textbf{¿Es necesario definir alguno de los enlaces como trunk? ¿Cuál?}
+	\\ Si, el enlace entre el Swit1 en el puerto ether2 (OpenSwitch) y el Mikrotik, se debe definir como trunk
+	\item \textbf{¿Es posible que el servidor de DHCP se encuentre en el router2002? ¿Cómo lograría que esto pueda funcionar?}
+	\\Si, es posible. Se define bridges para las vlans 10 y 20 en el router 2002, también el servidor dhcp y pool para ambos. 
+	Luego en la interfaz del router 2001 que conecta con el router 2002 se abren las vlans para que puedan pasar, se crea un bridge para cada vlan. Luego se agregan los puertos conectados a las pcs a esos bridges, y las vlans creadas en el puerto del router 2001 que conecta con el router 2002.
+	
+	\item \textbf{Cómo reconoce el servidor DHCP en 2002 de cuál pool de
+		conexiones tiene que retornar una dirección IP cuando le llegue una solicitud por la interface ether1? Realizar una captura
+		entre los routers 2001 y 2002 para ver esta información.
+	}
+\\
+Se deben definir dos servidores DHCP, uno para cada vlan. Para que reconozca sobre que pool debe actuar, deben estar creados dos bridges, uno para cada vlan, y el servidor de dhcp se genera sobre los bridges de cada vlan.
+	\item \textbf{ ¿Pueden existir mas de 1 servidor DHCP en una misma red?
+	Si es posible, ¿qué sucede después que el cliente envía su
+	DHCP Discovery?}
+	\\
+	Sí, es posible tener más de un servidor DHCP en la misma red. Sin embargo, es importante configurarlos adecuadamente para evitar problemas de asignación de direcciones IP y otros conflictos en la red. Cuando hay múltiples servidores DHCP en una red, pueden ocurrir una de las siguientes situaciones:
+	
+	Colisión de direcciones IP: Si los servidores DHCP no están configurados de manera adecuada, podrían asignar la misma dirección IP a dos dispositivos diferentes, lo que causaría conflictos en la red.
+	
+	Asignación de diferentes subredes: Puedes configurar los servidores DHCP para asignar direcciones IP de diferentes subredes. En este caso, los clientes recibirán direcciones IP de diferentes rangos según el servidor al que se conecten.
+	
+	Configuración redundante: En algunos casos, se configuran varios servidores DHCP para proporcionar redundancia y alta disponibilidad. Cuando uno de los servidores falla, los clientes pueden obtener una dirección IP del servidor DHCP funcional.
+	
+	Priorización de servidores: Es posible configurar los servidores DHCP con diferentes prioridades, de modo que un servidor tenga preferencia sobre otro. Esto se hace para garantizar que un servidor específico maneje la asignación de direcciones IP cuando esté disponible.
+	
+	Después de que un cliente envía su DHCP Discovery, varios servidores DHCP en la red pueden responder a esa solicitud. El cliente evaluará las respuestas y seguirá uno de estos procedimientos:
+	
+	Aceptación de la primera oferta: El cliente aceptará la primera oferta de un servidor DHCP que reciba y utilizará la dirección IP y la configuración proporcionadas por ese servidor.
+	
+	Selección basada en prioridad: Si se ha configurado la prioridad en los servidores DHCP, el cliente puede seleccionar la oferta del servidor con la prioridad más alta.
+	
+	Selección basada en el tiempo de respuesta: Algunos clientes pueden seleccionar la oferta del servidor DHCP que responde más rápido a su solicitud.
+	
+	En resumen, la respuesta de un cliente DHCP después de enviar su DHCP Discovery dependerá de la configuración y de las respuestas que reciba de los servidores DHCP disponibles en la red. Es importante configurar los servidores de manera adecuada para evitar conflictos y garantizar un funcionamiento eficiente de la red.
+	\item \textbf{Si una PC obtiene su configuración de IP desde un servidorDHCP, ¿es necesario que ejecute la detección de direcciónduplicada o el servidor garantiza que esa situación no puede
+		suceder?
+	}
+\\
+Cuando una PC obtiene su configuración de IP desde un servidor DHCP, en teoría, el servidor DHCP debería garantizar que no se asignen direcciones IP duplicadas en la misma red. El servidor DHCP mantiene un registro de las direcciones IP que ha asignado previamente y, por lo general, no volverá a asignar la misma dirección IP hasta que la concesión de IP anterior haya expirado y la dirección IP se haya liberado.
+
+Sin embargo, la detección de direcciones IP duplicadas es una medida adicional de seguridad que puede ser realizada por el sistema operativo de la PC o por otros dispositivos de red. Esta detección puede ser útil en casos donde podría haber fallas en la configuración del servidor DHCP o en situaciones donde un dispositivo en la red asigne manualmente una dirección IP que ya está en uso.
+
+La detección de direcciones IP duplicadas generalmente funciona enviando paquetes ARP (Address Resolution Protocol) para verificar si otra máquina en la red está utilizando la misma dirección IP. Si se detecta una dirección IP duplicada, se generará una advertencia o un conflicto, y el sistema operativo o el dispositivo de red tomará medidas para resolver el problema, como cambiar la dirección IP del dispositivo en conflicto.
+
+En resumen, aunque el servidor DHCP está diseñado para evitar la asignación de direcciones IP duplicadas, la detección de direcciones IP duplicadas a nivel de cliente o dispositivo de red puede proporcionar una capa adicional de seguridad en caso de problemas inesperados o malas configuraciones en la red.
+\end{enumerate}
 Bibliografia
 
 \url{https://gokhankosem.medium.com/rapid-spanning-tree-protocol-rstp-6618f59cf54f#:~:text=RSTP%20Port%20Roles&text=Alternate%20Port%20is%20a%20blocking,the%20backup%20of%20Designated%20Port.}
+	\include{apuntes}
 \end{document}
