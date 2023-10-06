@@ -20,7 +20,7 @@
 
 \fancyhf{}
 \fancyhead[C]{
-UNLP - Fac. Inform´atica - Postgrado - Redes I \\
+UNLP - Fac. Informática - Postgrado - Redes I \\ Trabajo Práctico I
 }
 \fancyhead[R]{	Año: 2023}
 \renewcommand{\headrulewidth}{0.4pt}
@@ -35,72 +35,92 @@ UNLP - Fac. Inform´atica - Postgrado - Redes I \\
 % !TEX encoding = UTF-8 Unicode
 \hfill
 
-\section*{Clase Práctica}
+\section*{VLANs, STP, IP, DHCP, y Ruteo Estático
+}
 \begin{enumerate}
-	\item	 Definir dos VLANs, 10 y 20. Asignar los nodos PC-1, PC-3 y PC-5
+	\item \textbf{ Definir dos VLANs, 10 y 20. Asignar los nodos PC-1, PC-3 y PC-5
 	a la VLAN 10 y los restantes a la VLAN 20. ¿En qué dispositivo se
-	definen las VLANs? 
+	definen las VLANs? }
 	\\
-Las VLANs se definen y configuran en los switches de red para segmentar y organizar el tráfico de la red en grupos lógicos separados.
-	\item¿Cómo deben definirse los enlaces entre los dispositivos 2001-
+	\\
+Las VLANs se definen y configuran en los switches para segmentar y organizar el tráfico de la red en grupos lógicos separados.
+	\item \textbf{¿Cómo deben definirse los enlaces entre los dispositivos 2001-
 	2002 y 2002-2003 para que sea posible que los nodos de cada
-	VLAN se vean entre ellos? ¿Por qué es necesario hacer esto?
+	VLAN se vean entre ellos? ¿Por qué es necesario hacer esto?}
 \\
-Para permitir que los nodos de diferentes VLANs se vean entre sí, es necesario configurar enlaces troncales (trunk links) entre los switches 2001-2002 y 2002-2003. Esto se hace utilizando protocolos de trunking como 802.1Q o ISL (Inter-Switch Link) que permiten que múltiples VLANs pasen a través de los mismos enlaces físicos. 
+\\
+Para permitir que los nodos de diferentes VLANs se vean entre sí, es necesario configurar enlaces troncales (trunk links) entre los switches 2001-2002 y 2002-2003. Esto se hace utilizando el  protocolo 802.1Q que permite qué múltiples VLANs pasen a través de los mismos enlaces físicos. 
 
-La razón por la que es necesario hacer esto es la segmentación y seguridad de la red. Las VLANs se utilizan para dividir una red en dominios de difusión lógicos, lo que mejora la seguridad y el rendimiento de la red. Esto proporciona aislamiento de red para controlar qué dispositivos pueden comunicarse entre sí y permite la organización de la red en grupos lógicos sin sacrificar la conectividad entre ellos cuando es necesario.
-\item ¿Qué nombre reciben los puertos donde se conectan las PCs?
+Las VLANs se utilizan para dividir una red en dominios de difusión lógicos, lo que mejora la seguridad y el rendimiento de la red. Esto proporciona aislamiento de red para controlar qué dispositivos pueden comunicarse entre sí y permite la organización de la red en grupos lógicos.
+
+\item \textbf{ ¿Qué nombre reciben los puertos donde se conectan las PCs?
 	¿Es necesario realizar alguna configuración especial en las
-	PCs para que funcionen en un VLAN en particular
+	PCs para que funcionen en un VLAN en particular?}
 \\
-Los puertos a los que se conectan las PCs en un switch se llaman "puertos de acceso" o "puertos de acceso VLAN". Estos puertos están configurados para pertenecer a una VLAN específica y generalmente se utilizan para conectar dispositivos finales, como computadoras, impresoras o teléfonos IP.
-Para que las PCs funcionen en una VLAN en particular, debes configurar los puertos de acceso en el switch para que pertenezcan a la VLAN deseada y configurar las PCs para que sean compatibles con esa VLAN, lo que incluye la configuración de la tarjeta de red, la dirección IP y, si es necesario, la puerta de enlace. Esto permite que las PCs se comuniquen dentro de su VLAN y, si es necesario, con otras VLANs a través del enrutamiento proporcionado por el router.
-\item Ejercicio 7: Captura de trafico : \\¿Qué información, referente al estándar IEEE 802.1q, es
-agregada en la estructura de la tramas?
+\\
+Los puertos a los que se conectan las PCs en un switch se llaman "puertos de acceso" o "puertos de acceso VLAN".
 
+Estos puertos están configurados para pertenecer a una VLAN específica y generalmente se utilizan para conectar dispositivos finales, como computadoras, impresoras o teléfonos IP.
+
+La configuración por defecto en una PCs permite que funcione en la VLAN que esta definida como "de Acceso" o "Untagged", sin etiquetar. Si queremos que la PCs pueda ver varias vlans debemos definir, una vlan como untagged y las demas como tagged. Solo se admite una vlan untagged.
+
+\item \textbf{ Ejercicio 7: Captura de trafico : \\¿Qué información, referente al estándar IEEE 802.1q, es
+agregada en la estructura de la tramas?}
+\\
 
 	La información que proporciona WireShark es un fragmento de una trama de Ethernet que ha sido etiquetada con una VLAN (Virtual LAN) específica utilizando el estándar 802.1Q. 
 	
-	802.1Q Virtual LAN: Esta parte indica que la trama Ethernet ha sido etiquetada con información de VLAN. Esto significa que esta trama pertenece a una VLAN específica.
+	\textbf{802.1Q Virtual LAN:} Esta parte indica que la trama Ethernet ha sido etiquetada con información de VLAN. Esto significa que esta trama pertenece a una VLAN específica.
 	
-	PRI: Indica la prioridad de la trama. En este caso, tiene un valor de 0, lo que significa "Best Effort" (Mejor Esfuerzo), lo que generalmente se utiliza para tráfico no prioritario.
+	\textbf{PRI:} Indica la prioridad de la trama. En este caso, tiene un valor de 0, lo que significa "Best Effort" (Mejor Esfuerzo), lo que generalmente se utiliza para tráfico no prioritario.
 	
-	DEI: Indica si la trama es elegible o no. En este caso, tiene un valor de 0, lo que significa que no es elegible.
+	\textbf{DEI:} Indica si la trama es elegible o no. En este caso, tiene un valor de 0, lo que significa que no es elegible.
 	
-	ID: Es el identificador de la VLAN. Aquí, el valor es 10, lo que indica que esta trama pertenece a la VLAN 10.
+	\textbf{ID:} Es el identificador de la VLAN. Aquí, el valor es 10, lo que indica que esta trama pertenece a la VLAN 10.
 	
-	Type: ARP (0x0806): Indica el tipo de tráfico que se encuentra dentro de la trama VLAN etiquetada. En este caso, es una solicitud del Protocolo de Resolución de Dirección (ARP).
+	\textbf{Type: ARP (0x0806):} Indica el tipo de tráfico que se encuentra dentro de la trama VLAN etiquetada. En este caso, es una solicitud del Protocolo de Resolución de Dirección (ARP).
 	
-	Padding: Esta parte indica que la trama VLAN tiene un relleno de ceros (padding) que ocupa un espacio específico. En este fragmento, el relleno es de 28 bytes (28 ceros).
+	\textbf{Padding:} Esta parte indica que la trama VLAN tiene un relleno de ceros (padding) que ocupa un espacio específico. En este fragmento, el relleno es de 28 bytes (28 ceros).
 	
-	Trailer: El trailer también contiene ceros.
+	\textbf{Trailer:} El trailer también contiene ceros.
 	
-	En resumen, la información en esta trama indica que se trata de una solicitud ARP que está siendo enviada a través de una red que utiliza el estándar 802.1Q para la segmentación de VLANs. La trama está etiquetada con la VLAN 10, lo que significa que pertenece a esa VLAN específica en la red.
-	Con respecto a lo anterior, ¿que significa que valor 0x8100? ¿Qué relación tiene con el como Type de la trama Ethernet?
-	Type: 802.1Q Virtual LAN (0x8100): Este valor indica que la trama Ethernet está etiquetada con información de VLAN según el estándar 802.1Q. El valor "0x8100" específicamente se utiliza para identificar el uso de VLAN en la trama Ethernet.
-  \\ ¿Cuál es el número máximo de VLANs que se pueden definir? ¿A qué se debe este máximo?
-\\
+	En conclusión, la trama está siendo enviada a través de una red que utiliza el estándar 802.1Q para la segmentación de VLANs. La trama está etiquetada con la VLAN 10, lo que significa que pertenece a esa VLAN específica en la red.
+	
+	\item \textbf{Con respecto a lo anterior, ¿que significa que valor 0x8100? ¿Qué relación tiene con el como Type de la trama Ethernet?}
+	
+	\textbf{Type:} 802.1Q Virtual LAN (0x8100): Este valor indica que la trama Ethernet está etiquetada con información de VLAN según el estándar 802.1Q. El valor "0x8100" específicamente se utiliza para identificar el uso de VLAN en la trama Ethernet.
+	
+  \item \textbf{¿Cuál es el número máximo de VLANs que se pueden definir? ¿A qué se debe este máximo?}
+
+
 El número máximo de VLANs que se pueden definir en una red depende del estándar y de la implementación específica de la tecnología de VLAN que estés utilizando. Sin embargo, en general, el estándar 802.1Q (que es el estándar más comúnmente utilizado para implementar VLANs) admite hasta 4,096 VLANs.
+
 Este número se debe al diseño del campo de identificador de VLAN (VLAN ID) en el encabezado 802.1Q. El campo VLAN ID es un campo de 12 bits, lo que significa que puede representar valores binarios que van desde 0000 0000 0001 (1 en decimal) hasta 1111 1111 1111 (4,095 en decimal). Por lo tanto, tienes un total de 4,096 posibles valores de VLAN ID.
-Es importante destacar que, aunque el estándar permite hasta 4,096 VLANs, en la práctica, la mayoría de las redes no utilizan ni necesitan un número tan grande de VLANs. El número de VLANs que se define en una red depende de su diseño y requisitos específicos. En la mayoría de las implementaciones, solo se utilizan unas pocas docenas o cientos de VLANs, si es que se utilizan VLANs en absoluto. El número de VLANs se selecciona en función de la segmentación y la administración del tráfico que necesita la red.
-\\ Si la captura del tráfico anterior la realizase entre una
-	PC y un switch, ¿la trama sufriría alguna alteración?
-\\
-Si la captura de tráfico la realizas entre una PC y un switch, la trama Ethernet 802.1Q no debería sufrir ninguna alteración significativa en el camino entre la PC y el switch, siempre y cuando el switch esté configurado correctamente para manejar VLANs.
+
+Es la práctica, la mayoría de las redes no utilizan ni necesitan un número tan grande de VLANs. 
+
+ \item \textbf{ Si la captura del tráfico anterior la realizase entre una
+	PC y un switch, ¿la trama sufriría alguna alteración?}
+
+Si la captura de tráfico la realizamoss entre una PC y un switch, la trama Ethernet 802.1Q no sufriría ninguna modificación.
+
 La etiqueta 802.1Q VLAN se agrega a nivel de la capa 2 del modelo OSI (capa de enlace de datos) y se utiliza para identificar a qué VLAN pertenece una trama. El switch es el dispositivo responsable de tomar decisiones basadas en esta etiqueta y reenviar la trama a la VLAN correspondiente.
-Si la configuración del switch es adecuada y coincide con la VLAN a la que pertenece la PC emisora y la PC receptora, la trama se transmitirá sin cambios significativos a través del switch. El switch solo realizará la función de reenvío en función de la VLAN y no modificará el contenido de la trama Ethernet.
-Sin embargo, si la configuración del switch no es la correcta, es posible que la trama se descarte o se maneje de manera incorrecta, lo que podría afectar la comunicación entre las PC. Es importante asegurarse de que la configuración de VLAN en el switch sea coherente con la configuración de las PCs y las necesidades de la red.
-\item 
-%Al definir VLANs, ¿que sucede con los dominios de broadcast?¿Y con los de colision?
-%La creación de VLANs tiene un impacto significativo en la forma en que se gestionan los dominios de %broadcast y los dominios de colisión en una red. Aquí te explico qué sucede con cada uno de ellos:
 
-Dominio de Broadcast:
+Si la configuración del switch es adecuada y coincide con la VLAN a la que pertenece la PC emisora y la PC receptora, la trama se transmitirá sin cambios significativos a través del switch. 
 
-Antes de la creación de VLANs: En una red sin VLANs, todos los dispositivos en la misma red física (por ejemplo, todos los dispositivos conectados a un switch) forman un único dominio de broadcast. Esto significa que cuando un dispositivo envía un paquete de difusión (broadcast), todos los demás dispositivos en esa red física deben procesar y responder a ese paquete.
+El switch solo realizará la función de reenvío en función de la VLAN y no modificará el contenido de la trama Ethernet.
 
-Después de la creación de VLANs: Al crear VLANs, divides físicamente la red en segmentos virtuales, y cada VLAN actúa como su propio dominio de broadcast. Esto significa que los paquetes de difusión solo se envían a los dispositivos dentro de la misma VLAN. Los dispositivos en otras VLANs no ven estos paquetes de difusión. Esto ayuda a reducir el tráfico de broadcast no deseado en la red y mejora la eficiencia.
-Dominio de Colisión:
-Antes de la creación de VLANs: En redes Ethernet tradicionales, como las que utilizan hubs en lugar de switches, todos los dispositivos conectados al mismo segmento físico forman un único dominio de colisión. Esto significa que si dos dispositivos transmiten datos al mismo tiempo en el mismo segmento, se producirá una colisión y ambos dispositivos deberán retransmitir sus datos.
+Sin embargo, si la configuración no es la correcta, se descarta la trama.
+
+\item \textbf{Al definir VLANs, ¿que sucede con los dominios de broadcast?¿Y con los de colision?}
+
+La creación de VLANs tiene un impacto en la forma en que se gestionan los dominios de broadcast y los dominios de colisión en una red. A
+
+En el dominio de Broadcast, antes de la creación de VLANs, osea una red sin VLANs, todos los dispositivos en la misma red física (por ejemplo, todos los dispositivos conectados a un switch) forman un único dominio de broadcast. Esto significa que cuando un dispositivo envía un paquete de difusión (broadcast), todos los demás dispositivos en esa red física deben procesar y responder a ese paquete.
+
+Al crear VLANs, divides físicamente la red en segmentos virtuales, y cada VLAN actúa como su propio dominio de broadcast. Esto significa que los paquetes de difusión solo se envían a los dispositivos dentro de la misma VLAN. Los dispositivos en otras VLANs no ven estos paquetes de difusión. Esto ayuda a reducir el tráfico de broadcast no deseado en la red y mejora la eficiencia.
+
+En el dominio de Colisión, antes de la creación de VLANs: En redes Ethernet tradicionales, como las que utilizan hubs en lugar de switches, todos los dispositivos conectados al mismo segmento físico forman un único dominio de colisión. Esto significa que si dos dispositivos transmiten datos al mismo tiempo en el mismo segmento, se producirá una colisión y ambos dispositivos deberán retransmitir sus datos.
 Después de la creación de VLANs: Con switches y VLANs, los dominios de colisión se reducen significativamente. Cada puerto del switch generalmente se considera un dominio de colisión independiente. Esto se debe a que los switches operan a nivel de la capa 2 (capa de enlace de datos) y aíslan el tráfico entre puertos. Como resultado, las colisiones son raras en redes modernas basadas en switches, independientemente de si se utilizan VLANs o no.
 En resumen, al definir VLANs, se logra un mejor control sobre los dominios de broadcast y se minimizan los dominios de colisión, lo que contribuye a una mejor administración del tráfico y una mayor eficiencia en la red.
 \item Con respecto al ejercicio planteado, ¿qué debería utilizar si desea conectar ambas VLANs? ¿Por qué?
@@ -322,9 +342,12 @@ En resumen, cuando se agrega un nuevo switch con una mejor prioridad al Root Bri
 \end{enumerate}
 \section*{VLAN, DHCP y Ruteo Estático}
 \begin{enumerate}
-	\item \textbf{¿Es necesario definir alguno de los enlaces como trunk? ¿Cuál?}
+	\item \textbf{¿Es necesario definir alguno de los enlaces como trunk? ¿Cuál?
+}
 	\\ Si, el enlace entre el Swit1 en el puerto ether2 (OpenSwitch) y el Mikrotik, se debe definir como trunk
-	\item \textbf{¿Es posible que el servidor de DHCP se encuentre en el router2002? ¿Cómo lograría que esto pueda funcionar?}
+	\item \textbf{¿Es posible que el servidor de DHCP se encuentre en el router
+2002? ¿Cómo lograría que esto pueda funcionar?
+}
 	\\Si, es posible. Se define bridges para las vlans 10 y 20 en el router 2002, también el servidor dhcp y pool para ambos. 
 	Luego en la interfaz del router 2001 que conecta con el router 2002 se abren las vlans para que puedan pasar, se crea un bridge para cada vlan. Luego se agregan los puertos conectados a las pcs a esos bridges, y las vlans creadas en el puerto del router 2001 que conecta con el router 2002.
 	
@@ -357,7 +380,9 @@ Se deben definir dos servidores DHCP, uno para cada vlan. Para que reconozca sob
 	Selección basada en el tiempo de respuesta: Algunos clientes pueden seleccionar la oferta del servidor DHCP que responde más rápido a su solicitud.
 	
 	En resumen, la respuesta de un cliente DHCP después de enviar su DHCP Discovery dependerá de la configuración y de las respuestas que reciba de los servidores DHCP disponibles en la red. Es importante configurar los servidores de manera adecuada para evitar conflictos y garantizar un funcionamiento eficiente de la red.
-	\item \textbf{Si una PC obtiene su configuración de IP desde un servidorDHCP, ¿es necesario que ejecute la detección de direcciónduplicada o el servidor garantiza que esa situación no puede
+	\item \textbf{Si una PC obtiene su configuración de IP desde un servidor
+DHCP, ¿es necesario que ejecute la detección de dirección
+duplicada o el servidor garantiza que esa situación no puede
 		suceder?
 	}
 \\
@@ -373,4 +398,5 @@ Bibliografia
 
 \url{https://gokhankosem.medium.com/rapid-spanning-tree-protocol-rstp-6618f59cf54f#:~:text=RSTP%20Port%20Roles&text=Alternate%20Port%20is%20a%20blocking,the%20backup%20of%20Designated%20Port.}
 	\include{apuntes}
+		\include{apuntesteoria}
 \end{document}
