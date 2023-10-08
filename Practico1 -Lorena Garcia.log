@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Debian) (preloaded format=pdflatex 2023.10.8)  8 OCT 2023 10:16
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Debian) (preloaded format=pdflatex 2023.10.8)  8 OCT 2023 10:18
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**practico.tex
-(./practico.tex
+**"Practico1 -Lorena Garcia.tex"
+(./Practico1 -Lorena Garcia.tex
 LaTeX2e <2022-11-01> patch level 1
 L3 programming layer <2023-01-16>
 (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
@@ -309,11 +309,11 @@ File: l3backend-pdftex.def 2023-01-16 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count283
 \l__pdf_internal_box=\box55
 )
-(./practico.aux
+(./Practico1 -Lorena Garcia.aux
 LaTeX Info: Redefining \. on input line 23.
 LaTeX Info: Redefining \% on input line 23.
 )
-\openout1 = `practico.aux'.
+\openout1 = `"Practico1 -Lorena Garcia.aux"'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 36.
 LaTeX Font Info:    ... okay on input line 36.
@@ -481,18 +481,18 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-22.48724pt}.
 
-[8] (./practico.aux
+[8] (./Practico1 -Lorena Garcia.aux
 LaTeX Info: Redefining \. on input line 23.
 LaTeX Info: Redefining \% on input line 23.
 ) ) 
 Here is how much of TeX's memory you used:
- 12514 strings out of 477948
- 194010 string characters out of 5837990
+ 12515 strings out of 477948
+ 194230 string characters out of 5837990
  1877330 words of memory out of 5000000
- 32446 multiletter control sequences out of 15000+600000
+ 32447 multiletter control sequences out of 15000+600000
  517158 words of font info for 39 fonts, out of 8000000 for 9000
  62 hyphenation exceptions out of 8191
- 75i,12n,76p,656b,1967s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,12n,76p,674b,1967s stack positions out of 10000i,1000n,20000p,200000b,200000s
  </home/lorena/.texlive2022/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1000.6
 00pk> </home/lorena/.texlive2022/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1000
 .600pk> </home/lorena/.texlive2022/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm07
@@ -500,7 +500,7 @@ Here is how much of TeX's memory you used:
 1000.600pk> </home/lorena/.texlive2022/texmf-var/fonts/pk/ljfour/jknappen/ec/ec
 bx1440.600pk> </home/lorena/.texlive2022/texmf-var/fonts/pk/ljfour/jknappen/ec/
 ecrm1000.600pk>
-Output written on practico.pdf (8 pages, 199311 bytes).
+Output written on "Practico1 -Lorena Garcia.pdf" (8 pages, 199311 bytes).
 PDF statistics:
  333 PDF objects out of 1000 (max. 8388607)
  133 compressed objects within 2 object streams
